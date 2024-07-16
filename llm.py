@@ -68,9 +68,7 @@ def get_dictionary_chain():
     #     "법적 책임을 나타내는 표현 -> 책임",
     #     "계약의 당사자를 나타내는 표현 -> 계약 당사자"
     # ]
-    dictionary = [
-        "사람을 나타내는 표현 -> 개인"
-    ]
+    dictionary = ["사람을 나타내는 표현 -> 개인"]
     llm = get_llm()
 
     prompt = ChatPromptTemplate.from_template(f"""
