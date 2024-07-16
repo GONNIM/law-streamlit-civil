@@ -61,12 +61,15 @@ def get_llm(model='gpt-4o'):
 
 
 def get_dictionary_chain():
+    # dictionary = [
+    #     "사람을 나타내는 표현 -> 개인",
+    #     "재산의 이전을 나타내는 표현 -> 양도",
+    #     "결혼을 나타내는 표현 -> 배우자 관계",
+    #     "법적 책임을 나타내는 표현 -> 책임",
+    #     "계약의 당사자를 나타내는 표현 -> 계약 당사자"
+    # ]
     dictionary = [
-        "사람을 나타내는 표현 -> 개인",
-        "재산의 이전을 나타내는 표현 -> 양도",
-        "결혼을 나타내는 표현 -> 배우자 관계",
-        "법적 책임을 나타내는 표현 -> 책임",
-        "계약의 당사자를 나타내는 표현 -> 계약 당사자"
+        "사람을 나타내는 표현 -> 개인"
     ]
     llm = get_llm()
 
@@ -102,11 +105,13 @@ def get_rag_chain():
         input_variables=['input']
     )
     system_prompt = (
-        "당신은 민법 전문가입니다. 사용자의 민법에 관한 질문에 답변해주세요"
-        "아래에 제공된 문서를 활용해서 답변해주시고"
-        "답변을 알 수 없다면 모른다고 답변해주세요"
-        "답변을 제공할 때는 민법 (XX조)에 따르면 이라고 시작하면서 답변해주시고"
-        "2-3 문장정도의 짧은 내용의 답변을 원합니다"
+        "당신은 민법 전문가입니다. 사용자의 민법에 관한 질문에 답변해 주세요. "
+        "아래에 제공된 문서를 활용해서 답변해 주시고, "
+        "답변을 알 수 없다면 모른다고 답변해 주세요. "
+        "답변을 제공할 때는 '민법 (XX조)에 따르면' 이라고 시작하면서 답변해 주시고, "
+        # "2-3 문장 정도의 짧은 내용의 답변을 원합니다."
+        "사용자가 명쾌하게 이해할 수 있는 내용의 답변을 원합니다. "
+        "ChatGPT 보다 나은 답변이 나온다면 당신은 두둑한 보너스를 받게 됩니다."
         "\n\n"
         "{context}"
     )
@@ -137,8 +142,8 @@ def get_rag_chain():
 def get_ai_response(user_message):
     dictionary_chain = get_dictionary_chain()
     rag_chain = get_rag_chain()
-    tax_chain = {"input": dictionary_chain} | rag_chain
-    ai_response = tax_chain.stream(
+    civil_chain = {"input": dictionary_chain} | rag_chain
+    ai_response = civil_chain.stream(
         {
             "question": user_message
         },
