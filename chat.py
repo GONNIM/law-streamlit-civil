@@ -7,7 +7,7 @@ from llm import get_ai_response
 st.set_page_config(page_title="민법 챗봇", page_icon="🤖")
 
 st.title("🤖 민법 챗봇")
-st.caption("무엇이든 물어보세요! 계약, 소유, 상속, 채무 등 다양한 개인 권리와 의무에 대해...")
+st.caption("여러분의 궁금증을 언제든지 물어보세요. 계약, 소유, 상속, 채무 등 다양한 개인 권리와 의무에 관해 자세히 알려드립니다.")
 
 load_dotenv()
 
