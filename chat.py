@@ -8,7 +8,7 @@ st.set_page_config(page_title="민법 챗봇", page_icon="🤖")
 
 st.title("🤖 민법 챗봇")
 # caption = "무엇이든 물어보세요! 계약, 소유, 상속, 채무 등 다양한 개인 권리와 의무에 대해..."
-caption = "여러분의 궁금증을 언제든지 물어보세요. 계약, 소유, 상속, 채무 등 다양한 개인 권리와 의무에 관해 자세히 알려드립니다."
+caption = "무엇이든 물어보세요! 계약, 소유, 상속, 채무 등 다양한 개인 권리와 의무에 관해 자세히 알려드립니다."
 st.caption(caption)
 
 load_dotenv()
@@ -21,7 +21,7 @@ for message in st.session_state.message_list:
         st.write(message["content"])
 
 # placeholder = "계약, 소유, 상속, 채무에 관련된 궁금한 내용들을 말씀해주세요!"
-placeholder = "계약, 소유, 상속, 채무에 대한 궁금증이 있으면 말씀해 주세요!"
+placeholder = "계약, 소유, 상속, 채무에 관련된 궁금한 내용들을 말씀해 주세요!"
 if user_question := st.chat_input(placeholder=placeholder):
     with st.chat_message("user"):
         st.write(user_question)
